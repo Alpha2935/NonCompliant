@@ -12,10 +12,11 @@
 [![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-000000?style=flat-square)](LICENSE)
 [![Tests](https://img.shields.io/badge/Tests-35%20passing-000000?style=flat-square)](#testing)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-▶_Try_It-FF0000?style=flat-square)](https://alpha2935.github.io/NonCompliant/)
 
 <br/>
 
-[**Try It**](#getting-started) · [**How It Works**](#how-it-works) · [**Architecture**](#architecture) · [**Contributing**](#contributing)
+[**Live Demo**](https://alpha2935.github.io/NonCompliant/) · [**How It Works**](#how-it-works) · [**Architecture**](#architecture) · [**Contributing**](#contributing)
 
 </div>
 
