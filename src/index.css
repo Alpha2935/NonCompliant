@@ -1,0 +1,411 @@
+/**
+ * NonCompliant — Brutalist Design System
+ *
+ * No gradients, shadows, rounded corners, or glassmorphism.
+ * System fonts only. Monochrome + single accent (red).
+ * Single screen, no scrolling, deliberate asymmetry.
+ * Cooperation window = slightly cleaner borders.
+ */
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Root ── */
+:root {
+  --nc-bg: #F4F4F4;
+  --nc-fg: #000000;
+  --nc-secondary: #333333;
+  --nc-border: #000000;
+  --nc-disabled: #9A9A9A;
+  --nc-accent: #FF0000;
+  --nc-white: #FFFFFF;
+
+  --nc-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --nc-title-size: 26px;
+  --nc-body-size: 15px;
+  --nc-label-size: 12px;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--nc-font);
+  font-size: var(--nc-body-size);
+  color: var(--nc-fg);
+  background: var(--nc-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── App Layout ── */
+.nc-app {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 48px 40px 40px 56px;
+  /* deliberate asymmetry */
+  position: relative;
+}
+
+.nc-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 520px;
+  width: 100%;
+}
+
+.nc-title {
+  font-size: var(--nc-title-size);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--nc-fg);
+  user-select: none;
+  margin-bottom: 6px;
+}
+
+.nc-subtitle {
+  font-size: var(--nc-label-size);
+  color: var(--nc-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  user-select: none;
+}
+
+/* ── Panel ── */
+.nc-panel {
+  border: 2px solid var(--nc-border);
+  background: var(--nc-white);
+  position: relative;
+}
+
+.nc-panel--cooperative {
+  /* Cooperation window: borders become slightly cleaner —
+     no jitter applied, subtle difference */
+  border-width: 1px;
+}
+
+.nc-panel--minimized {
+  border: 2px solid var(--nc-border);
+  background: var(--nc-white);
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nc-panel-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--nc-border);
+  padding: 8px 12px;
+  user-select: none;
+}
+
+.nc-panel-title {
+  font-size: var(--nc-label-size);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+
+.nc-panel-expand {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.nc-panel-close {
+  background: none;
+  border: 2px solid var(--nc-border);
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--nc-font);
+  color: var(--nc-fg);
+  transition: background 0.1s linear;
+}
+
+.nc-panel-close:hover {
+  background: var(--nc-fg);
+  color: var(--nc-bg);
+}
+
+.nc-panel-content {
+  padding: 24px 20px 28px 18px;
+  /* asymmetric */
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ── Button ── */
+.nc-button {
+  font-family: var(--nc-font);
+  font-size: var(--nc-body-size);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: none;
+  border: 2px solid var(--nc-border);
+  color: var(--nc-fg);
+  padding: 10px 28px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.08s linear, color 0.08s linear, border-width 0.1s linear;
+  min-width: 120px;
+  position: relative;
+}
+
+.nc-button:hover {
+  background: var(--nc-fg);
+  color: var(--nc-bg);
+}
+
+/* "Aligned" = compliance confirmation effect: border becomes perfectly even */
+.nc-button--aligned {
+  background: var(--nc-fg);
+  color: var(--nc-bg);
+  border-width: 1px;
+}
+
+/* ── Slider ── */
+.nc-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  user-select: none;
+}
+
+.nc-slider-label {
+  font-size: var(--nc-label-size);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  min-width: 50px;
+  color: var(--nc-secondary);
+}
+
+.nc-slider-track {
+  flex: 1;
+  height: 4px;
+  background: var(--nc-disabled);
+  position: relative;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.nc-slider-fill {
+  height: 100%;
+  background: var(--nc-fg);
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transition: width 0.05s linear;
+}
+
+.nc-slider-handle {
+  width: 12px;
+  height: 12px;
+  background: var(--nc-fg);
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: left 0.05s linear;
+}
+
+.nc-slider-value {
+  font-size: var(--nc-label-size);
+  font-variant-numeric: tabular-nums;
+  min-width: 28px;
+  text-align: right;
+  color: var(--nc-secondary);
+}
+
+/* ── Input ── */
+.nc-input-container {
+  width: 100%;
+}
+
+.nc-input {
+  font-family: var(--nc-font);
+  font-size: var(--nc-body-size);
+  width: 100%;
+  border: 2px solid var(--nc-border);
+  background: none;
+  color: var(--nc-fg);
+  padding: 10px 12px;
+  outline: none;
+}
+
+.nc-input::placeholder {
+  color: var(--nc-disabled);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: var(--nc-label-size);
+}
+
+.nc-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ── Animations ── */
+@keyframes nc-shake-anim {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  12% {
+    transform: translateX(-4px);
+  }
+
+  25% {
+    transform: translateX(3px);
+  }
+
+  37% {
+    transform: translateX(-3px);
+  }
+
+  50% {
+    transform: translateX(2px);
+  }
+
+  62% {
+    transform: translateX(-2px);
+  }
+
+  75% {
+    transform: translateX(1px);
+  }
+
+  87% {
+    transform: translateX(-1px);
+  }
+}
+
+@keyframes nc-snap-anim {
+  0% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(-6px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes nc-jitter {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(0.5px, -0.5px);
+  }
+
+  50% {
+    transform: translate(-0.5px, 0.5px);
+  }
+
+  75% {
+    transform: translate(0.5px, 0px);
+  }
+}
+
+.nc-shake {
+  animation: nc-shake-anim 0.4s steps(8) forwards;
+}
+
+.nc-snap {
+  animation: nc-snap-anim 0.2s linear forwards;
+}
+
+/* Subtle jitter for non-cooperative states — applied via JS class */
+.nc-jitter {
+  animation: nc-jitter 0.3s steps(4) infinite;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .nc-shake {
+    animation: none;
+    border-color: var(--nc-accent) !important;
+    transition: border-color 0.3s linear;
+  }
+
+  .nc-snap {
+    animation: none;
+  }
+
+  .nc-jitter {
+    animation: none;
+  }
+
+  .nc-button,
+  .nc-panel-close {
+    transition: none;
+  }
+}
+
+/* ── Debug Overlay ── */
+.nc-debug {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  background: var(--nc-fg);
+  color: var(--nc-bg);
+  font-family: var(--nc-font);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 8px 12px;
+  line-height: 1.6;
+  z-index: 9999;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+.nc-debug-title {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--nc-secondary);
+  padding-bottom: 3px;
+}
+
+.nc-debug-coop {
+  margin-top: 4px;
+  color: var(--nc-accent);
+  font-weight: 700;
+}
